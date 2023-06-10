@@ -1,2 +1,7 @@
 flask
 flask_mysqldb
+redis
+flask_sqlalchemy
+
+# Flask-Bcrypt
+Flask-Cors

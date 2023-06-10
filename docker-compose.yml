@@ -11,11 +11,13 @@ services:
 
   redis:
     container_name: "redis-service"
-    image: "redis:latest"
+    image: "redis:6.2"
     restart: always
-    command: redis-server --save 20 1 --loglevel warning --requirepass mypassword
+    command: redis-server --loglevel warning
     ports:
       - '6375:6379'
+    volumes:
+      - ./cache:/data
 
   api:
     container_name: app-api
@@ -29,10 +31,10 @@ services:
       - ./flask-api:/app
     depends_on:
       - db
+      - redis
 
   frontend:
     container_name: app-frontend
-    entrypoint: /bin/sh
     build:
       context: ./react-app
       dockerfile: Dockerfile
