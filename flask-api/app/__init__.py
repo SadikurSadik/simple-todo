@@ -9,14 +9,8 @@ db = SQLAlchemy()
 app = Flask(__name__)
 
 #use os.get_env() and maintain .env file
-# MySQL configuration
-app.config['MYSQL_HOST'] = 'db'
-# app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'password'
-app.config['MYSQL_DB'] = 'simple_todo_db'
-
-app.config['SQLALCHEMY_DATABASE_URI']="mysql://root:12345678@host.docker.internal/simple_todo_db"
+# MySQL and Redis connection
+app.config['SQLALCHEMY_DATABASE_URI']="mysql://root:password@db/simple_todo_db"
 
 app.config['REDIS_HOST']="redis"
 app.config['REDIS_PORT']=6379

@@ -5,13 +5,19 @@ from app import redis_db
 CACHE_KEY = "all_todos"
 
 def insert(data):
-    variable = Todo(data)
-    db.session.add(variable)
+    todo = Todo(data)
+    db.session.add(todo)
     db.session.commit()
-    return variable
+    return todo
 
 def getData():
     return Todo.query.all()
+
+def delete(id):
+    todo = Todo.query.get(id)
+    db.session.delete(todo)
+    db.session.commit()
+    return
 
 def setRedisCache(data):
     redis_db.set(CACHE_KEY, data)
